@@ -5,7 +5,7 @@ All the input parameters are written directly in the code. You may modify the va
 
 *1 : Fault dimension (X, Y) = (-20:70, -120: 20) km. Note that the fault slip is always in X positive. A square element size is set as ds = 2 km, so that (90/2 + 1) x (140/2 + 1) = 46 x 71 = 3266 elements. A time step is automatically set as dt = ds/(2 Vp). The code calculates up to 400 time steps. 
 
-*2 : Output directory is defined in "dir". The ridigdity and Vp of the homogeneous medium is set as "mu" and "alpha". The slip-weakening law is assumed with the standard values of peak strength, residual stress, and critical slip distance as "tp0", "tr0", "dc0". The initial shear stress is by defulat set as "t0" and initial crack size as "r0". Note that these are the default values and we can introduce any heterogeniety on the fault later. 
+*2 : Output directory is defined in "dir". The rigidity and Vp of the homogeneous medium is set as "mu" and "alpha". The slip-weakening law is assumed with the standard values of peak strength, residual stress, and critical slip distance as "tp0", "tr0", "dc0". The initial shear stress is by defulat set as "t0" and initial crack size as "r0". Note that these are the default values and we can introduce any heterogeniety on the fault later. 
 
 *3 : the fault heterogeneity is introduced. Note that the the rupture initiates suddenly at t = 0 around the hypocenter (xhypo, yhypo). Stress drops instantaneously from "t0" to "tr0" independently the friction law in a circular crack of radius "r0". 
 
@@ -45,7 +45,7 @@ Line 1-end: Element number, X, Y, initial shear stress, peak strength, residual 
 
 ### output???.dat : output file named by time step
 
-Line 1-end: X, Y, slip rate, fault slip, shear stress, strength
+Line 1-end: X (km), Y (km), slip rate (m/s), fault slip (m), shear stress (MPa), strength (MPa)
 
 ## For dveloppers
 
