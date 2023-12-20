@@ -1,4 +1,4 @@
-# AFM2000
+# 3D-BIEM - version AFM2000
 3D boundary integral equation method (BIEM) for earthquake dynamic rupture simulation by Aochi et al. (Pageoph, 2000). A planar fault in a 3D infinite, homogeneous medium is assumed. The code is parallelized using MPI. 
 
 All the input parameters are written directly in the code. You may modify the variables within the indicated parts (*1, *2, *3). In the given example, 
