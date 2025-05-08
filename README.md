@@ -1,7 +1,7 @@
 # 3D-BIEM - version AFM2000
 3D boundary integral equation method (BIEM) for earthquake dynamic rupture simulation by Aochi et al. (Pageoph, 2000). A planar fault in a 3D infinite, homogeneous medium is assumed. The code is parallelized using MPI. 
 
-# The first example (illapel-mpi-distrib.f90) = planar fault
+# Example 1 (illapel-mpi-distrib.f90) = planar fault
 
 All the input parameters are written directly in the code. You may modify the variables within the indicated parts (*1, *2, *3). In the given example, 
 
@@ -53,7 +53,7 @@ Line 1-end: X (km), Y (km), slip rate (m/s), fault slip (m), shear stress (MPa),
 
 In this code, we evalute direcly the spatio-temporal convolution of the BIEM. We use only tau_{31} component (external function ker31s), as the fault slip is supposed in X axis on a planar fault. In such configuration, the kernel is unique. We can apply FFT for the fast convolution (See IA2005 code). For non-planar fault geometry, we need to combine the other components tau_{ij} and estimate shear and normal stresses every element. (6 December 2023)
 
-# Example 2 ( ) : non-planar vertical fault
+# Example 2 ( ) = non-planar vertical fault
 
 
 # REFERENCE 
