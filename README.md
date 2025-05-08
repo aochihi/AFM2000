@@ -59,7 +59,7 @@ This code simulates the rupture propagaiton on a vertical strike-slip fault.
 In this example, some input parameters and fault geometry are given by external files. 
 
 ### zone1_X20_Opt0_T0.80.prm
-> [fault geometry file]
+> [fault geometry file] (model_eaf0.5bi.dat)
 
 > fs (static frictional coefficient), fd (dynamic friciton coefficinet), cohesive force in MPa, Tvalue
 
