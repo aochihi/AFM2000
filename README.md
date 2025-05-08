@@ -1,6 +1,8 @@
 # 3D-BIEM - version AFM2000
 3D boundary integral equation method (BIEM) for earthquake dynamic rupture simulation by Aochi et al. (Pageoph, 2000). A planar fault in a 3D infinite, homogeneous medium is assumed. The code is parallelized using MPI. 
 
+# The first example (illapel-mpi-distrib.f90) = planar fault
+
 All the input parameters are written directly in the code. You may modify the variables within the indicated parts (*1, *2, *3). In the given example, 
 
 *1 : Fault dimension (X, Y) = (-20:70, -120: 20) km. Note that the fault slip is always in X positive. A square element size is set as ds = 2 km, so that (90/2 + 1) x (140/2 + 1) = 46 x 71 = 3266 elements. A time step is automatically set as dt = ds/(2 Vp). The code calculates up to 400 time steps. 
@@ -11,18 +13,18 @@ All the input parameters are written directly in the code. You may modify the va
 
 
 
-# COMPILE
+## COMPILE
 On standard computing centers, you may compile as 
 > mpif90 -O illapel-mpi-distrib.f90 kernel31s_05Avril.f
 
 
-# RUN
+## RUN
 No Input file. On the same directory, make sure that the output directory defind by "dir" exists. In the given example, 
 > make test1
 
 Set number of MPI processes upto hundreds to 1000 (but should be less than the total element number=3266), and run.  
 
-# OUTPUTS
+## OUTPUTS
 The code writes some messages as standard out. All the results are saved under the directory "dir", written by the master CPU. 
 
 ### hoge2.txt: (input parameters saved)
@@ -50,6 +52,8 @@ Line 1-end: X (km), Y (km), slip rate (m/s), fault slip (m), shear stress (MPa),
 ## For dveloppers
 
 In this code, we evalute direcly the spatio-temporal convolution of the BIEM. We use only tau_{31} component (external function ker31s), as the fault slip is supposed in X axis on a planar fault. In such configuration, the kernel is unique. We can apply FFT for the fast convolution (See IA2005 code). For non-planar fault geometry, we need to combine the other components tau_{ij} and estimate shear and normal stresses every element. (6 December 2023)
+
+# Example 2 ( ) : non-planar vertical fault
 
 
 # REFERENCE 
