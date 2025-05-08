@@ -1,5 +1,5 @@
 # 3D-BIEM - version AFM2000
-3D boundary integral equation method (BIEM) for earthquake dynamic rupture simulation by Aochi et al. (Pageoph, 2000). A planar fault in a 3D infinite, homogeneous medium is assumed. The code is parallelized using MPI. 
+3D boundary integral equation method (BIEM) for earthquake dynamic rupture simulation by Aochi et al. (Pageoph, 2000). A planar fault or non-planar faults are assumed in a 3D infinite, homogeneous medium. The code is parallelized using MPI. Typical two examples are demonstrated here. 
 
 # Example 1 (illapel-mpi-distrib.f90) = planar fault
 
@@ -55,7 +55,7 @@ In this code, we evalute direcly the spatio-temporal convolution of the BIEM. We
 
 # Example 2 (eaf3b-mpi-distrib.f90 ) = non-planar vertical fault
 
-This code simulates the rupture propagaiton on a vertical strike-slip fault.  
+This code simulates the rupture propagaiton on a vertical strike-slip fault, by adopting the apprximation of the free surface effect using mirror sources.  
 In this example, some input parameters and fault geometry are given by external files. 
 
 ### zone1_X20_Opt0_T0.80.prm
