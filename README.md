@@ -58,11 +58,15 @@ In this code, we evalute direcly the spatio-temporal convolution of the BIEM. We
 This code simulates the rupture propagaiton on a vertical strike-slip fault.  
 In this example, some input parameters and fault geometry are given by external files. 
 
-### Zone1_X20_Opt0_T0.80.prm
+### zone1_X20_Opt0_T0.80.prm
 > [fault geometry file]
+
 > fs (static frictional coefficient), fd (dynamic friciton coefficinet), cohesive force in MPa, Tvalue
+
 > maximum depth in km for model, optimal fault direction (0 means Y=0, degree counterclockwise)
+
 > minimum and maximum fault lateral position in km for model
+
 > hypocenter position X, Y, Z in km. The closest point projected on the fault is chosen.
 
 Note: For the definition of initial stress state from Mohr-Coulomb diagram, please read Aochi and Ulrich (2015) and Aochi and Cruz-Atienza (2025).
@@ -71,7 +75,9 @@ Note2: Output from the simulations are written in the directory of the input fil
 
 ### model_eaf0.5bi.dat
 > total element number
+
 > total element number of main fault (the same), element size (ds=0.5 km)
+
 > number, normarized X, normalized Y, nu1, nu3
 
 Note: Element size is always 1. Real coordinates is (X*ds, Y*ds) in km. One signle fault with no branch and no segmentaitons. 
