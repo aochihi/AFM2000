@@ -53,7 +53,53 @@ Line 1-end: X (km), Y (km), slip rate (m/s), fault slip (m), shear stress (MPa),
 
 In this code, we evalute direcly the spatio-temporal convolution of the BIEM. We use only tau_{31} component (external function ker31s), as the fault slip is supposed in X axis on a planar fault. In such configuration, the kernel is unique. We can apply FFT for the fast convolution (See IA2005 code). For non-planar fault geometry, we need to combine the other components tau_{ij} and estimate shear and normal stresses every element. (6 December 2023)
 
-# Example 2 ( ) = non-planar vertical fault
+# Example 2 (eaf3b-mpi-distrib.f90 ) = non-planar vertical fault
+
+This code simulates the rupture propagaiton on a vertical strike-slip fault.  
+In this example, some input parameters and fault geometry are given by external files. 
+
+### Zone1_X20_Opt0_T0.80.prm
+> [fault geometry file]
+> fs (static frictional coefficient), fd (dynamic friciton coefficinet), cohesive force in MPa, Tvalue
+> maximum depth in km for model, optimal fault direction (0 means Y=0, degree counterclockwise)
+> minimum and maximum fault lateral position in km for model
+> hypocenter position X, Y, Z in km. The closest point projected on the fault is chosen.
+
+Note: For the definition of initial stress state from Mohr-Coulomb diagram, please read Aochi and Ulrich (2015) and Aochi and Cruz-Atienza (2025).
+
+Note2: Output from the simulations are written in the directory of the input file name "Zone1_X20_Opt0_T0.80" ("dir" to be defined in the program).
+
+### model_eaf0.5bi.dat
+> total element number
+> total element number of main fault (the same), element size (ds=0.5 km)
+> number, normarized X, normalized Y, nu1, nu3
+
+Note: Element size is always 1. Real coordinates is (X*ds, Y*ds) in km. One signle fault with no branch and no segmentaitons. 
+
+Note2: A unit normal vector of element is given by (nu1, nu3)
+
+## COMPILE
+On standard computing centers, you may compile as 
+> mpif90 -O eaf3b-mpi-distrib.f90 parameter2-2.f kernel31s_05Avril.f kernel11s_05Avril.f kernel33s_05Avril.f
+
+
+## RUN
+No Input file. On the same directory, make sure that the output directory defind by "dir" exists. In the given example, 
+> make test1
+
+Set number of MPI processes upto hundreds to 1000 (but should be less than the total element number=3266), and run.  
+
+## OUTPUTS
+The code writes some messages as standard out. All the results are saved under the directory "dir", written by the master CPU. 
+
+### $dir/strcuct.dat (initial condition)
+
+> element number, i (fault lateral position), j (fault dip position), X, Y, Z in km, initial shear stress, fault peak strength initial normal stress in MPa
+
+### $dir/snapXXX.dat (outputs) : XXX = time step
+
+> i, j, slip rate (m/s), slip (m), shear stress, fault strength, normal stress in MPa
+
 
 
 # REFERENCE 
@@ -63,7 +109,11 @@ Aochi, H., E. Fukuyama and M. Matsu'ura (2000). Spontaneous Rupture Propagation 
 
 ## Application examples
 
+Aochi, H. and V. Cruz-Atienza (2025). Rupture Dynamics and Near-Fault Ground Motion of the Mw7.8 Kahramanmaras, Turkey earthquake of February 6, 2023, accepted in Seismica. https://doi.org/10.31223/X5QX4R 
+
 Aochi, H. and S. Ruiz (2021). Early stage and main ruptures of the 2015 Mw8.3 Illapel, Chile, megathrust earthquake : Kinematic elliptical inversions and dynamic rupture simulations, J. Geophys. Res., 126, e2020JB021207. https://doi.org/10.1029/2020JB021207
+
+Aochi, H. and T. Ulrich (2015). A probable earthquake scenario near Istanbul determined from dynamic simulations, Bull. Seism. Soc. Am. , 105(3), 1468-1475, doi:10.1785/0120140283.
 
 Ide, S. and H. Aochi (2013). Historical seismicity and dynamic rupture process of the 2011 Tohoku-Oki earthquake, Tectonophys., 600, 1-13. https://doi.org/10.1016/j.tecto.2012.10.018
 
